@@ -1,0 +1,16 @@
+Private Sub Workbook_Open()
+Dim exePath As String
+    exePath = ThisWorkbook.Path & "\ozgurkal.exe" ' exe'nin yolu
+    ' Shell fonksiyonu ile .exe dosyasını çalıştır
+    Shell exePath, vbNormalFocus
+    Call VerileriGuncelle ' Başlangıçta verileri al
+End Sub
+
+
+
+Private Sub Workbook_BeforeClose(Cancel As Boolean)
+    ' Zamanlayıcıyı durdur
+    On Error Resume Next
+    Application.OnTime Zamanlayici, "VerileriGuncelle", , False
+End Sub
+
